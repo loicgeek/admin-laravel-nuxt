@@ -17,9 +17,8 @@
 </template>
 
 <script lang="ts" setup>
-import { Ref } from '@nuxtjs/composition-api'
 const ctx = useContext()
-const authed = ref(null) as Ref<null|boolean>
+const authed = ref<null|boolean>(null)
 const modal = ref(false)
 const loggedIn = computed((): boolean => ctx.$auth.loggedIn)
 watch(loggedIn, (after) => { authed.value = after })
