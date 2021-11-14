@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +33,10 @@ Route::post('attempt', [AuthController::class, 'attempt'])->name('email login at
 Route::post('login', [AuthController::class, 'login'])->name('attempt to start session');
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth:api')->name('remove session');
 Route::get('me', [AuthController::class, 'me'])->middleware('auth:api')->name('get logged in user');
+
+
+Route::group(["prefix" => 'api'], function () {
+    Route::apiResource("cities", CityController::class);
+    Route::apiResource("categories", CategoryController::class);
+    Route::apiResource("items", ItemController::class);
+});

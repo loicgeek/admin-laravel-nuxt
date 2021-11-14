@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('avatar', 1000)->nullable();
             $table->string('stripe')->nullable();
+            $table->boolean("is_admin")->default(false);
             $table->boolean('is_sub')->default(false);
             $table->timestamps();
         });
@@ -32,7 +33,6 @@ class CreateUsersTable extends Migration
             $table->text('payload');
             $table->timestamps();
         });
-
     }
 
     /**
