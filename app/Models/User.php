@@ -15,6 +15,7 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * App\Models\User
@@ -53,7 +54,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory;
     use Humble;
@@ -66,7 +67,7 @@ class User extends Authenticatable
      */
     protected $guarded = [];
     protected $appends = ['first_name', 'is_trial',];
-    protected $casts = [ 'is_sub' => 'boolean' ];
+    protected $casts = ['is_sub' => 'boolean', 'is_admin' => 'boolean'];
 
     public array $interfaces = [
         'location' => [
@@ -87,11 +88,32 @@ class User extends Authenticatable
 
     public function getFirstNameAttribute(): string
     {
-        return explode(' ', $this->name)[ 0 ];
+        return explode(' ', $this->name)[0];
     }
 
     public function providers(): HasMany
     {
         return $this->hasMany(Provider::class);
+    }
+
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

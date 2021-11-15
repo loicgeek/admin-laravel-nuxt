@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['comment', 'rating', 'user_id', 'item_id'];
+    protected $casts = ['rating' => 'double'];
 }

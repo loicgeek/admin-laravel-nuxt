@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
@@ -38,5 +39,24 @@ Route::get('me', [AuthController::class, 'me'])->middleware('auth:api')->name('g
 Route::group(["prefix" => 'api'], function () {
     Route::apiResource("cities", CityController::class);
     Route::apiResource("categories", CategoryController::class);
+
+    Route::get("items/{item}/comments", [ItemController::class, 'getComments']);
+    Route::post("items/{item}/comments", [ItemController::class, 'addComment']);
+    Route::put("items/{item}/comments/{commentId}", [ItemController::class, 'updateComment']);
+    Route::delete("items/{item}/comments/{commentId}", [ItemController::class, 'deleteComment']);
     Route::apiResource("items", ItemController::class);
+});
+
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', [ApiAuthController::class, 'login']);
+    Route::post('logout', [ApiAuthController::class, 'logout']);
+    Route::post('refresh', [ApiAuthController::class, 'refresh']);
+    Route::post('me', [ApiAuthController::class, 'me']);
 });
