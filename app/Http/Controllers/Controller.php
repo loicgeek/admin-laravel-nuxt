@@ -72,7 +72,7 @@ class Controller extends BaseController
 
     public function error(): Response|JsonResponse
     {
-        return $this->render(['forced_error' => $forced_error]);
+        return $this->render(['forced_error' => '$forced_error']);
     }
 
     public function auth(): Redirector|Application|RedirectResponse

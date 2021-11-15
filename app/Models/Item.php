@@ -12,7 +12,7 @@ class Item extends Model
 
     protected $with = ['city'];
 
-    protected $fillable = ['name', 'city_id', 'user_id', 'image', 'website', 'facebook', 'ig', 'phone', 'email', 'description', 'address', 'is_featured'];
+    protected $fillable = ['name', 'city_id', 'user_id', 'image', 'website', 'facebook', 'ig', 'phone', 'email', 'description', 'address', 'is_featured', "hours"];
 
     protected $hidden = ['city_id', 'user_id'];
     /**
@@ -25,6 +25,7 @@ class Item extends Model
         'user_id' => 'integer',
         'ratings_average' => 'double',
         'is_featured' => 'boolean',
+        'hours' => 'json',
     ];
 
     public function city()

@@ -22,11 +22,11 @@ class CreateItemsTable extends Migration
             $table->double("latitude")->nullable();
             $table->double("longitude")->nullable();
             $table->json("hours")->nullable();
-            $table->json("website")->nullable();
-            $table->json("facebook")->nullable();
-            $table->json("ig")->nullable();
-            $table->json("phone")->nullable();
-            $table->json("email")->nullable();
+            $table->string("website")->nullable();
+            $table->string("facebook")->nullable();
+            $table->string("ig")->nullable();
+            $table->string("phone")->nullable();
+            $table->string("email")->nullable();
             $table->timestamps();
 
             $table->integer("city_id");

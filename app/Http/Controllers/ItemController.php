@@ -12,7 +12,7 @@ class ItemController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api,custom-jwt')->except(["index", "show"]);
+        $this->middleware('auth:api,custom-jwt')->except(["index", "show", 'getComments']);
     }
 
 
