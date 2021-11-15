@@ -24,6 +24,8 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         $query = Item::query();
+        $orderBy = $request->order_by ?? "ratings_average";
+        $order = $request->order ?? "DESC";
 
         if ($request->has("city_id")) {
             $query->where("city_id", $request->city_id);
@@ -49,7 +51,7 @@ class ItemController extends Controller
                 DB::raw('AVG(rating) as ratings_average')
             ))
             ->groupBy('items.id')
-            ->orderBy('ratings_average', 'DESC');
+            ->orderBy($orderBy, $order);
 
         return response()->json($query->get());
     }
