@@ -12,7 +12,7 @@ class Item extends Model
 
     protected $with = ['city'];
 
-    protected $fillable = ['name', 'city_id', 'user_id', 'image', 'website', 'facebook', 'ig', 'phone', 'email', 'description', 'address'];
+    protected $fillable = ['name', 'city_id', 'user_id', 'image', 'website', 'facebook', 'ig', 'phone', 'email', 'description', 'address', 'is_featured'];
 
     protected $hidden = ['city_id', 'user_id'];
     /**
@@ -24,6 +24,7 @@ class Item extends Model
         'city_id' => 'integer',
         'user_id' => 'integer',
         'ratings_average' => 'double',
+        'is_featured' => 'boolean',
     ];
 
     public function city()

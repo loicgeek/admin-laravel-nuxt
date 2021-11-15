@@ -28,6 +28,9 @@ class ItemController extends Controller
         if ($request->has("city_id")) {
             $query->where("city_id", $request->city_id);
         }
+        if ($request->has("is_featured")) {
+            $query->where("is_featured", true);
+        }
         if ($request->has("s")) {
             $pattern = "%" . $request->s . "%";
             $query->where("name", "LIKE", $pattern);
