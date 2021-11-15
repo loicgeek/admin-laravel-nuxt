@@ -58,5 +58,5 @@ Route::group([
     Route::post('login', [ApiAuthController::class, 'login']);
     Route::post('logout', [ApiAuthController::class, 'logout']);
     Route::post('refresh', [ApiAuthController::class, 'refresh']);
-    Route::post('me', [ApiAuthController::class, 'me']);
+    Route::get('user', [ApiAuthController::class, 'me']);
 });

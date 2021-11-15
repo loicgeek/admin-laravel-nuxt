@@ -1,6 +1,12 @@
 export {}
 declare global {
   export namespace models {
+    export interface OauthResult {
+      token: string
+      user: models.User
+      provider: string
+      error?: string
+    }
 
     export interface Provider {
       // columns
